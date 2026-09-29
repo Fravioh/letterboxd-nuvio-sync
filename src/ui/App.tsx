@@ -264,7 +264,6 @@ export function App() {
   const [page, setPage] = useState(0);
   const [dragging, setDragging] = useState(false);
   const [tmdbConfigured, setTmdbConfigured] = useState(false);
-  const [showConfigModal, setShowConfigModal] = useState(false);
   const [tmdbTokenInput, setTmdbTokenInput] = useState('');
   const [savingToken, setSavingToken] = useState(false);
   const [tokenError, setTokenError] = useState('');
@@ -456,7 +455,6 @@ export function App() {
       tmdbCredential.current = tokenToSave.trim();
       provider.current = new TmdbProvider(tmdbCredential.current);
       setTmdbConfigured(true);
-      setShowConfigModal(false);
       setTmdbTokenInput('');
       setError('');
       setNotice('Your TMDB credential was verified and will remain only in this tab.');
@@ -578,25 +576,6 @@ export function App() {
           Letterboxd <span className="brand-light">→ Nuvio</span>
         </a>
         <nav aria-label="Main navigation">
-          {!demo && (
-            <button
-              type="button"
-              className="button secondary small"
-              onClick={() => {
-                setShowConfigModal(true);
-              }}
-              style={{
-                fontSize: '11px',
-                padding: '4px 10px',
-                height: 'auto',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '5px',
-              }}
-            >
-              <KeyRound size={12} /> TMDB Token
-            </button>
-          )}
           <a href="#how-it-works">How it works</a>
           <a href="#privacy">
             Privacy <ArrowUpRight size={13} />
@@ -946,6 +925,20 @@ export function App() {
           </div>
           <aside className="side-column">
             <section className="privacy-card" id="privacy">
+              <div className="bridge-visual" aria-hidden="true">
+                <span className="letterboxd-dots">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span className="bridge-track">
+                  <i />
+                  <i />
+                  <i />
+                  <ArrowRight size={15} />
+                </span>
+                <span className="nuvio-mark">N</span>
+              </div>
               <span className="eyebrow">PRIVACY</span>
               <h2>Data handling</h2>
               <p>The Letterboxd ZIP or CSV is parsed in your browser.</p>
@@ -1278,138 +1271,6 @@ export function App() {
           </div>
         </footer>
       </main>
-      {showConfigModal && (
-        <dialog
-          className="dialog tmdb-modal"
-          open
-          aria-labelledby="tmdb-modal-title"
-          style={{
-            position: 'fixed',
-            inset: 0,
-            margin: 'auto',
-            zIndex: 1000,
-            maxWidth: '480px',
-            background: 'var(--panel-bg, #141714)',
-            border: '1px solid var(--border-color, #2a2e2a)',
-            borderRadius: '16px',
-            padding: '24px',
-            boxShadow: '0 24px 80px rgba(0, 0, 0, 0.6)',
-            color: 'var(--text-color, #e6ebe6)',
-          }}
-        >
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: '16px',
-            }}
-          >
-            <h3 id="tmdb-modal-title" style={{ margin: 0, fontSize: '17px', fontWeight: 600 }}>
-              TMDB API Configuration
-            </h3>
-            <button
-              onClick={() => setShowConfigModal(false)}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: 'inherit',
-                cursor: 'pointer',
-                opacity: 0.7,
-              }}
-              aria-label="Close dialog"
-            >
-              <X size={18} />
-            </button>
-          </div>
-          <p style={{ fontSize: '13px', lineHeight: 1.6, opacity: 0.85, marginBottom: '14px' }}>
-            To match Letterboxd diary entries to the content IDs expected by Nuvio, a free TMDB Read
-            Access Token or API key is required. Use your own credential; it stays only in this tab
-            and is sent through the app server to TMDB for your requests.
-          </p>
-          <div style={{ marginBottom: '16px' }}>
-            <a
-              href="https://www.themoviedb.org/settings/api"
-              target="_blank"
-              rel="noreferrer"
-              className="button secondary small"
-              style={{
-                textDecoration: 'none',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-              }}
-            >
-              Get free token at themoviedb.org <ExternalLink size={12} />
-            </a>
-          </div>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              void handleSaveToken(tmdbTokenInput);
-            }}
-          >
-            <label
-              style={{
-                display: 'block',
-                fontSize: '12px',
-                fontWeight: 500,
-                marginBottom: '6px',
-              }}
-            >
-              API Read Access Token or v3 API key
-            </label>
-            <input
-              type="password"
-              placeholder="Paste token starting with eyJ..."
-              value={tmdbTokenInput}
-              onChange={(e) => setTmdbTokenInput(e.target.value)}
-              disabled={savingToken}
-              style={{
-                width: '100%',
-                padding: '10px 12px',
-                fontSize: '13px',
-                marginBottom: '8px',
-                borderRadius: '8px',
-                background: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                color: '#fff',
-                boxSizing: 'border-box',
-              }}
-              required
-            />
-            {tokenError && (
-              <p style={{ color: '#ff6b6b', fontSize: '12px', margin: '4px 0 12px' }}>
-                {tokenError}
-              </p>
-            )}
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-                gap: '8px',
-                marginTop: '16px',
-              }}
-            >
-              <button
-                type="button"
-                className="button secondary small"
-                onClick={() => setShowConfigModal(false)}
-                disabled={savingToken}
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="button primary small"
-                disabled={savingToken || !tmdbTokenInput.trim()}
-              >
-                {savingToken ? 'Verifying...' : 'Use Credential'}
-              </button>
-            </div>
-          </form>
-        </dialog>
-      )}
       {confirming && plan && (
         <ConfirmDialog
           plan={plan}

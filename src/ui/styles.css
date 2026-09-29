@@ -614,6 +614,71 @@ h1 {
   border-radius: 20px;
 }
 
+.bridge-visual {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+}
+
+.letterboxd-dots {
+  display: flex;
+  align-items: center;
+  width: 68px;
+  height: 44px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.letterboxd-dots i {
+  width: 18px;
+  height: 18px;
+  margin-right: -4px;
+  border-radius: 50%;
+  background: #ed974b;
+}
+
+.letterboxd-dots i:nth-child(2) {
+  background: #6ed678;
+}
+
+.letterboxd-dots i:nth-child(3) {
+  background: #7cc5d5;
+}
+
+.bridge-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 80px;
+  color: var(--muted);
+}
+
+.bridge-track i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.nuvio-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(198, 180, 247, 0.25);
+  border-radius: 12px;
+  background: rgba(198, 180, 247, 0.08);
+  color: #c6b4f7;
+  font-size: 20px;
+  font-weight: 700;
+}
+
 .privacy-card .eyebrow {
   font-size: 10px;
   letter-spacing: 0.08em;

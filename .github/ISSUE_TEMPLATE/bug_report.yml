@@ -1,0 +1,40 @@
+name: Bug report
+description: Report a reproducible problem using test data.
+body:
+  - type: markdown
+    attributes:
+      value: Do not attach credentials, personal exports, private history, or network captures. Use test data.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include the error category and the step of the flow.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction with synthetic data
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser, operating system, app version, and Nuvio client version
+      description: For hosted deployments, include the public origin and deployed commit if known.
+    validations:
+      required: true
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Where did it fail?
+      options:
+        - Importing the Letterboxd export
+        - Validating a TMDB credential
+        - Connecting to Nuvio or choosing a profile
+        - Analyzing or reviewing matches
+        - Dry run or confirmation
+        - Synchronizing or generating the report
+        - Deployment or health check
+    validations:
+      required: true

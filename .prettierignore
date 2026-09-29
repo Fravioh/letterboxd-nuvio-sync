@@ -1,0 +1,6 @@
+node_modules
+dist
+dist-server
+package-lock.json
+public/tmdb.svg
+test-results

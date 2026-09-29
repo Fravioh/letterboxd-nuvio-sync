@@ -73,7 +73,9 @@ tests/               parser, API, matching, sync, and UI tests
 
 ## Deployment
 
-The production server serves both the frontend and `/api/*` from one HTTPS origin. Required settings:
+The repository is ready for Vercel. Link it to a Vercel project and deploy from `main`; the platform builds the Vite frontend, runs the Express API routes as Functions, and derives the allowed origin from the production URL. No shared TMDB credential is configured.
+
+For another Node hosting platform, serve both the frontend and `/api/*` from one HTTPS origin and set:
 
 ```dotenv
 NODE_ENV=production
@@ -82,7 +84,7 @@ HOST=0.0.0.0
 PORT=3001
 ```
 
-Users supply their own TMDB credentials; do not configure a shared TMDB token. See [docs/DEPLOY.md](docs/DEPLOY.md) for Node and Docker instructions.
+Users supply their own TMDB credentials. See [docs/DEPLOY.md](docs/DEPLOY.md) for Vercel, Node, and Docker instructions.
 
 ## Current limitations
 

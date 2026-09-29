@@ -4,6 +4,8 @@ Nuvio, Letterboxd, and TMDB names and marks belong to their respective owners. T
 
 `public/tmdb.svg` is the unmodified **Alt short (blue)** logo from [TMDB's attribution page](https://www.themoviedb.org/about/logos-attribution). TMDB's branding terms apply to this asset.
 
+`public/nuvio-logo.png` is the official app mark from the verified [NuvioMedia/NuvioTV](https://github.com/NuvioMedia/NuvioTV) repository. Nuvio's branding terms apply to this asset.
+
 This product uses the TMDB API but is not endorsed or certified by TMDB.
 
 Protocol references and inspected source revisions are listed in [docs/RESEARCH.md](docs/RESEARCH.md).

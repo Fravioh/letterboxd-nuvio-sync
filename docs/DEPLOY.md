@@ -14,6 +14,19 @@ Run the frontend and metadata API from the same HTTPS origin. The service is sta
 
 There is no server TMDB token. Each user enters their own credential in the application.
 
+## Vercel
+
+The checked-in `api/` entry points reuse the Express application for the API, while `vercel.json` builds the Vite frontend into `dist/`. Vercel serves the static build and runs the API routes as Functions on the same origin.
+
+```sh
+vercel link
+vercel deploy --prod
+```
+
+`APP_ORIGIN` is optional on Vercel. When it is absent, the server uses `VERCEL_PROJECT_PRODUCTION_URL`, which Vercel provides automatically. Set `APP_ORIGIN` only when you want to pin a particular custom HTTPS domain. The deployment requires no TMDB secret because every user supplies a personal credential in the browser.
+
+After deployment, verify `/api/health`, the demo, TMDB credential validation, and one small import before sharing the URL.
+
 ## Node
 
 ```sh

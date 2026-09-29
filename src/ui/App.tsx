@@ -937,7 +937,9 @@ export function App() {
                   <i />
                   <ArrowRight size={15} />
                 </span>
-                <span className="nuvio-mark">N</span>
+                <span className="nuvio-mark">
+                  <img src="/nuvio-logo.png" alt="" />
+                </span>
               </div>
               <span className="eyebrow">PRIVACY</span>
               <h2>Data handling</h2>

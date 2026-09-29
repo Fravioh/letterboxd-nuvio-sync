@@ -671,12 +671,18 @@ h1 {
   justify-content: center;
   width: 44px;
   height: 44px;
-  border: 1px solid rgba(198, 180, 247, 0.25);
+  overflow: hidden;
+  border: 1px solid rgba(89, 167, 255, 0.28);
   border-radius: 12px;
-  background: rgba(198, 180, 247, 0.08);
-  color: #c6b4f7;
-  font-size: 20px;
-  font-weight: 700;
+  background: #0d0f1d;
+}
+
+.nuvio-mark img {
+  width: 84px;
+  height: 84px;
+  max-width: none;
+  object-fit: cover;
+  flex: 0 0 auto;
 }
 
 .privacy-card .eyebrow {
